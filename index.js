@@ -1,6 +1,10 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 const app = express();
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
@@ -15,25 +19,25 @@ app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
 
-
 const transporter = nodemailer.createTransport({
     port: 465,
     host: "smtp.gmail.com",
     auth: {
-        user: 'youremail@gmail.com',
-        pass: 'xxxxxxxxxx',
+        user: process.env.gmail_username,
+        pass: process.env.gmail_password,
     },
     secure: true, // upgrades later with STARTTLS -- change this based on the PORT
 });
 
 route.post('/text-mail', (req, res) => {
-    const {to, subject, text } = req.body;
+    console.log('post...');
+    const {to, subject, text, html } = req.body;
     const mailData = {
-        from: 'youremail@gmail.com',
+        from: process.env.gmail_username,
         to: to,
         subject: subject,
         text: text,
-        html: '<b>Hey there! </b><br> This is our first message sent with Nodemailer<br/>',
+        html: html,
     };
 
     transporter.sendMail(mailData, (error, info) => {
@@ -48,7 +52,7 @@ route.post('/text-mail', (req, res) => {
 route.post('/attachments-mail', (req, res) => {
     const {to, subject, text } = req.body;
     const mailData = {
-        from: 'youremail@gmail.com',
+        from: process.env.gmail_username,
         to: to,
         subject: subject,
         text: text,
