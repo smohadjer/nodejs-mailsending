@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+const image = require('./base64image.js');
+
 const app = express();
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
@@ -50,7 +52,7 @@ route.post('/text-mail', (req, res) => {
 
 
 route.post('/attachments-mail', (req, res) => {
-    const {to, subject, text } = req.body;
+    const {to, subject, text, html } = req.body;
     const mailData = {
         from: process.env.gmail_username,
         to: to,
@@ -65,6 +67,11 @@ route.post('/attachments-mail', (req, res) => {
             {   // file on disk as an attachment
                 filename: 'text_file.txt',
                 path: 'text_file.txt'
+            },
+            {   // encoded string as an attachment
+                filename: 'cat.jpg',
+                content: image.base64Image,
+                encoding: 'base64'
             }
         ]
     };
