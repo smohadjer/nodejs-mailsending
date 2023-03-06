@@ -58,7 +58,7 @@ route.post('/attachments-mail', (req, res) => {
         to: to,
         subject: subject,
         text: text,
-        html: '<b>Hey there! </b><br> This is our first message sent with Nodemailer<br/>',
+        html: html,
         attachments: [
             {   // file on disk as an attachment
                 filename: 'nodemailer.png',
