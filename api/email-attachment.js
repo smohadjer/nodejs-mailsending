@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { base64Image } from './../base64image.js';
+//import { base64Image } from './../base64image.js';
 import dotenv from 'dotenv';
 import multiparty from 'multiparty';
 import fs from 'fs';
@@ -23,7 +23,6 @@ export default async (req, res) => {
     let myFiles = [];
     form.parse(req, async (err, fields, files) => {
         const {to, subject, text, html } = fields;
-        console.log(fields);
 
         for (const file of files.upload) {
             //console.log(file);
@@ -35,7 +34,6 @@ export default async (req, res) => {
                 content: sourceBase64,
                 encoding: 'base64'
             });
-            console.log(fileName);
         }
 
         const mailData = {
