@@ -9,23 +9,30 @@
                 console.log('DOM is ready...');
             })
         </script>
+        <style>
+          form {
+            background-color: lightgray;
+            padding: 1em;
+          }
+        </style>
     </head>
     <body>
         <main>
+          <p><a href="https://github.com/smohadjer/nodejs-mailsending">https://github.com/smohadjer/nodejs-mailsending</a></p>
             <h1>Email form data</h1>
-            <form method="POST" action="/text-mail">
+            <form method="POST" action="/api/email">
                 <input name="to" placeholder="Email"><br /><br />
                 <input name="subject" placeholder="Subject"><br /><br />
-                <textarea name="html" placeholder="HTML content for Email"></textarea><br /><br />
+                <textarea name="html" placeholder="Content for Email" rows="4" cols="50"></textarea><br /><br />
                 <button>Send Email</button>
               </form>
 
               <h1>Email form data with files</h1>
-              <form method="POST" action="/attachments-mail" enctype="multipart/form-data">
+              <form method="POST" action="/api/email-attachment" enctype="multipart/form-data">
                   <input name="to" placeholder="Email"><br /><br />
                   <input name="subject" placeholder="Subject"><br /><br />
-                  <textarea name="html" placeholder="HTML content for Email"></textarea><br /><br />
-                  <input type="file" name="upload" accept="image/png, image/gif, image/jpeg" multiple><br>
+                  <textarea name="html" placeholder="Content for Email" rows="4" cols="50"></textarea><br /><br />
+                  <input type="file" name="upload" accept="image/png, image/gif, image/jpeg" multiple><br><br>
                   <button>Send Email</button>
                 </form>
         </main>

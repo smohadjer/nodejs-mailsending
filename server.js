@@ -20,11 +20,11 @@ app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
 
-route.post('/text-mail', (req, res) => {
+route.post('/api/email', (req, res) => {
     email(req, res);
 });
 
 
-route.post('/attachments-mail', (req, res) => {
+route.post('/api/email-attachment', (req, res) => {
     emailAttachment(req, res);
 });
