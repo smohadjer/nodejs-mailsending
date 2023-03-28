@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Email form data</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                console.log('DOM is ready...');
+            })
+        </script>
+    </head>
+    <body>
+        <main>
+            <h1>Email form data</h1>
+            <form method="POST" action="/text-mail">
+                <input name="to" placeholder="Email"><br /><br />
+                <input name="subject" placeholder="Subject"><br /><br />
+                <textarea name="html" placeholder="HTML content for Email"></textarea><br /><br />
+                <button>Send Email</button>
+              </form>
+
+              <h1>Email form data with files</h1>
+              <form method="POST" action="/attachments-mail" enctype="multipart/form-data">
+                  <input name="to" placeholder="Email"><br /><br />
+                  <input name="subject" placeholder="Subject"><br /><br />
+                  <textarea name="html" placeholder="HTML content for Email"></textarea><br /><br />
+                  <input type="file" name="upload" accept="image/png, image/gif, image/jpeg" multiple><br>
+                  <button>Send Email</button>
+                </form>
+        </main>
+    </body>
+</html>
